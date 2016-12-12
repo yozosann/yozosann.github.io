@@ -65,32 +65,32 @@
         }
 
         #wrapper .phoA {
-            background-image: url(http://chuantu.biz/t5/44/1481530202x2075203298.jpg);
+            background-image: url(http://i1.piimg.com/567571/2ba53b0a2e3ec653.jpg);
             -webkit-transform: rotateX(330deg) rotateY(-4deg) translateZ(164.19px);
         }
 
         #wrapper .phoB {
-            background-image: url(../images/studio_0002.jpg);
+            background-image: url(http://i1.piimg.com/567571/d98fe89608f0e67b.jpg);
             -webkit-transform: rotateX(270deg) rotateY(-4deg) translateZ(164.19px);
         }
 
         #wrapper .phoC {
-            background-image: url(../images/studio_0003.jpg);
+            background-image: url(http://i1.piimg.com/567571/bc171bc0e439fe73.jpg);
             -webkit-transform: rotateX(210deg) rotateY(-4deg) translateZ(164.19px);
         }
 
         #wrapper .phoD {
-            background-image: url(../images/studio_0004.jpg);
+            background-image: url(http://i1.piimg.com/567571/fbe8fce5c8756537.jpg);
             -webkit-transform: rotateX(150deg) rotateY(-4deg) translateZ(164.19px);
         }
 
         #wrapper .phoE {
-            background-image: url(../images/studio_0005.jpg);
+            background-image: url(http://i1.piimg.com/567571/c3eaa676b4013156.jpg);
             -webkit-transform: rotateX(90deg) rotateY(-4deg) translateZ(164.19px);
         }
 
         #wrapper .phoF {
-            background-image: url(../images/studio_0006.jpg);
+            background-image: url(http://i1.piimg.com/567571/de776babc757a7c3.jpg);
             -webkit-transform: rotateX(30deg) rotateY(-4deg) translateZ(164.19px);
         }
 
@@ -186,7 +186,7 @@
             picMask.className = "picMask";
             var pic = document.createElement("div");
             pic.className = "pic";
-            pic.style.backgroundImage = "url(../images/studio_000" + (i + 1) + ".jpg)";
+            pic.style.backgroundImage = document.querySelector("." + classArr[i])[0].style.backgroundImage;
             picMask.appendChild(pic);
             maskParent.appendChild(picMask);
             EventUtil.addHandler(picMask, "click", function (event) {
