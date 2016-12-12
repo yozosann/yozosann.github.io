@@ -244,8 +244,7 @@
                     }
                 }
             }
-            function getOtherPointsPos(obj)
-            {
+            function getOtherPointsPos(obj) {
 
             }
             Array.prototype.clone = function () {
@@ -573,7 +572,7 @@
                             point = new Point(otherPoints[i].x + mainPoint.x, window.innerHeight - (otherPoints[i].y + mainPoint.y), otherR, otherPointColor, otherPoints[i].isLink);
                         }
                         else {
-                            point = new Point(otherPoints[i].x , window.innerHeight - otherPoints[i].y , otherR, otherPointColor, otherPoints[i].isLink);
+                            point = new Point(otherPoints[i].x, window.innerHeight - otherPoints[i].y, otherR, otherPointColor, otherPoints[i].isLink);
                         }
                         pointTexts = otherTexts[i];
                         pointTextArr = [];
@@ -582,9 +581,8 @@
                                 text = new Text(mainPoint.x + otherPoints[i].x + pointTexts[o].offsetX, mainPoint.y + otherPoints[i].y + pointTexts[o].offsetY,
             otherSize, otherTextColor, fontFamily, pointTexts[o].value, pointTexts[o].href, target);
                             }
-                            else
-                            {
-                                text = new Text(otherPoints[i].x + pointTexts[o].offsetX,otherPoints[i].y + pointTexts[o].offsetY,
+                            else {
+                                text = new Text(otherPoints[i].x + pointTexts[o].offsetX, otherPoints[i].y + pointTexts[o].offsetY,
             otherSize, otherTextColor, fontFamily, pointTexts[o].value, pointTexts[o].href, target);
                             }
                             pointTextArr.push(text);
