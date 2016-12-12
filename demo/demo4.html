@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+        }
+
+        .canvasContainer {
+            height: 100%;
+            width: 100%;
+            background-color: burlywood;
+            overflow: hidden;
+            position:relative;
+        }
+
+        #CanvasWithStarlines {
+            background-color: darkslategray;
+        }
+    </style>
+</head>
+<body>
+    <div class="canvasContainer">
+        <canvas id="CanvasWithStarlines" style="position:absolute;left:0;top:0;display:block;"></canvas>
+    </div>
+    <script type="text/javascript" src="../../star-lines.js"></script>
+    <script>
+        var canvasStarlines = document.getElementById('CanvasWithStarlines');
+        var starLines = new starLines(canvasStarlines);
+        starLines.draw();
+    </script>
+</body>
+</html>

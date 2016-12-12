@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        .background {
+            width: 800px;
+            height: 600px;
+            background-image: url(http://imgbdb2.bendibao.com/tour/201311/29/20131129151641814.jpg);
+            position: relative;
+        }
+
+        #myCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            cursor: crosshair;
+        }
+
+        .mask {
+            width: 800px;
+            height: 600px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            display: none;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        #pic {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="mask">
+            <canvas id="pic"></canvas>
+        </div>
+        <canvas id="myCanvas" width="1000" height="600"></canvas>
+    </div>
+    <script>
+        var bck = document.getElementsByClassName("background")[0];
+        var mask = document.getElementsByClassName("mask")[0];
+
+        var c = document.getElementById('myCanvas');
+        var ctx = c.getContext('2d');
+
+        var c2 = document.getElementById('pic');
+        var ctxPic = c2.getContext('2d');
+
+        var isDown = false;
+        var x0, y0, x1, y1;
+        var image = new Image();
+        var temp;
+        image.src = "http://imgbdb2.bendibao.com/tour/201311/29/20131129151641814.jpg";
+
+        c.onmousedown = function (event) {
+            event = event ? event : window.event;
+            isDown = true;
+            x0 = event.pageX;
+            y0 = event.pageY;
+        }
+
+        c.onmousemove = function (event) {
+            event = event ? event : window.event;
+            if (isDown) {
+                ctx.clearRect(0, 0, c.width, c.height);
+                x1 = event.pageX;
+                y1 = event.pageY;
+                drawLine(x0, y0, x1, y0);  //上
+                drawLine(x0, y0, x0, y1);  //左
+                drawLine(x1, y1, x1, y0);  //右
+                drawLine(x1, y1, x0, y1);  //下
+            }
+        }
+
+        c.onmouseup = function () {
+            if (isDown) {
+                ctx.clearRect(0, 0, c.width, c.height);
+                isDown = false;
+                mask.style.display = "block";
+                //鼠标释放的时候，画出来的形状是个矩形，保持x0,y0是左上角的坐标，x1,y1是右下角的坐标
+                if (x0 > x1) {
+                    temp = x0;
+                    x0 = x1;
+                    x1 = temp;
+                }
+                if (y0 > y1) {
+                    temp = y0;
+                    y0 = y1;
+                    y1 = temp;
+                }
+                playCutPic(x0, y0, x1, y1);
+            }
+        }
+
+        mask.onclick = reset;
+        function reset()
+        {
+            ctx.clearRect(0, 0, c.width, c.height);
+            ctxPic.clearRect(0, 0, c.width, c.height);
+            mask.style.display = "none";
+        }
+
+        function playCutPic(x0,y0,x1,y1) {
+            c2.width = x1 - x0;
+            c2.height = y1 - y0;
+            c2.style.marginTop = -c2.height / 2 + 'px';
+            c2.style.marginLeft = -c2.width / 2 + 'px';
+            ctxPic.drawImage(image, x0, y0, x1 - x0, y1 - y0,
+        0, 0, c2.width, c2.height);
+        }
+
+        function drawLine(x1, y1, x2, y2) {
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = 'white';
+            ctx.stroke();
+        }
+
+    </script>
+</body>
+</html>

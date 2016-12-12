@@ -1,0 +1,359 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: padding-box;
+            font-family: Arial, “Helvetica Neue”, Helvetica;
+            color: rgb(121,121,121);
+        }
+
+        #content {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #addBar {
+            width: 80%;
+            height: 13%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        #editBar {
+            height: 30%;
+            width: 80%;
+            padding: 5px;
+            font-size: 1em;
+            background-color: rgb(251,251,249);
+            border: 2px solid rgb(238,238,238);
+            border-radius: 4px;
+        }
+
+            #editBar:focus {
+                outline: none;
+                background-color: white;
+                border-color: #00BFFF;
+            }
+
+        #todayTasks {
+            width: 80%;
+            height: 45%;
+        }
+
+        h1 {
+            margin-bottom: 1.5%;
+        }
+
+        .tasks {
+            width: 100%;
+            overflow: scroll;
+        }
+
+        .today {
+            height: 84%;
+        }
+
+        .over {
+            height: 72%;
+        }
+
+        #buttomBar {
+            width: 80%;
+            height: 6%;
+        }
+
+        #overTasks {
+            width: 80%;
+            height: 28%;
+        }
+
+        button {
+            height: 30%;
+            width: 9%;
+            color: white;
+            font-weight: 600;
+            line-height: 30px;
+            margin-right: 15px;
+            text-align: center;
+            border-radius: 5px;
+            border: 0;
+        }
+
+        .add {
+            height: 40px;
+            margin-left: 5%;
+            background-color: rgb(70,130,180);
+            line-height: 40px;
+        }
+
+        .task {
+            background-color: rgb(251,251,249);
+            width: 98%;
+            height: 12%;
+            padding: 10.5px;
+            margin-top: 3px;
+            display: table;
+        }
+
+            .task > span {
+                width: 1%;
+                color: darkcyan;
+                font-weight: 600;
+            }
+
+            .task > .highSpan {
+                color: crimson;
+            }
+
+            .task > .lowSpan {
+                color: cornflowerblue;
+            }
+
+            .task > input {
+                margin: 0 10px;
+            }
+
+        input[type=checkbox]:focus {
+            outline: none;
+        }
+
+        button {
+            height: 30px;
+            width: 9%;
+            color: white;
+            font-weight: 600;
+            line-height: 30px;
+            margin-right: 15px;
+            text-align: center;
+            border-radius: 5px;
+            border: 0;
+        }
+
+            button:focus {
+                outline: none;
+            }
+
+            button:hover {
+                opacity: 0.54;
+                cursor: pointer;
+            }
+
+            button:disabled {
+                opacity: 1;
+                cursor: not-allowed;
+                background-color: rgb(121,121,121);
+            }
+
+        .add {
+            position: absolute;
+            top: 40px;
+            height: 40px;
+            left: 75%;
+            background-color: rgb(70,130,180);
+            line-height: 40px;
+        }
+
+        .done, .remove {
+            float: left;
+            background-color: rgb(70,130,180);
+        }
+
+        .normal {
+            float: right;
+            background-color: darkcyan;
+        }
+
+        .high {
+            float: right;
+            background-color: crimson;
+        }
+
+        .low {
+            float: right;
+            background-color: cornflowerblue;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div id="addBar">
+            <input type="text" id="editBar" placeholder="Enter to add tasks to do today " />
+            <button class="add">Add</button>
+        </div>
+        <div id="todayTasks">
+            <h1>Today</h1>
+            <div class="tasks today">
+                <div class="task">
+                    <input type="checkbox" /><span>回家复习</span>
+                </div>
+                <div class="task">
+                    <input type="checkbox" /><span>回家做饭</span>
+                </div>
+                <div class="task">
+                    <input type="checkbox" /><span>照顾小猫</span>
+                </div>
+                <div class="task">
+                    <input type="checkbox" /><span>帮忙洗碗</span>
+                </div>
+            </div>
+        </div>
+        <div id="buttomBar">
+            <button class="low">Low</button>
+            <button class="normal">Normal</button>
+            <button class="high">High</button>
+            <button class="done" disabled>Done</button>
+            <button class="remove" disabled>Remove</button>
+        </div>
+        <div id="overTasks">
+            <h1>Done</h1>
+            <div class="tasks over"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../javascripts/jquery.min.js"></script>
+    <script>
+        $('#content').height($(window).height());
+        $('#content > div').each(function () {
+            $(this).css("margin-top", $('#content').height() * 0.01 + "px").css("margin-bottom", $('#content').height() * 0.01 + "px");
+        });
+        var $today = $('.today');
+        var $over = $('.over');
+        var $add = $('.add');
+        var $editBar = $('#editBar');
+        var $normal = $('.normal');
+        var $low = $('.low');
+        var $high = $('.high');
+        var $remove = $('.remove');
+        var $done = $('.done');
+
+        function CreatTask(text, level) {
+            var $task = $('<div></div>');
+            $task.addClass('task');
+            var checkbox = $('<input />');
+            checkbox.prop('type', 'checkbox');
+            var span = $('<span></span>');
+            //if (level = "high")
+            //{
+            //    span.css("color", "crimson");
+            //}
+            //else if (level = "low")
+            //{
+            //    span.css("color", "cornflowerblue");
+            //}
+            span.append(text);
+            $task.append(checkbox).append(span);
+
+            if (document.getElementsByClassName("lowSpan")[0] != undefined) {
+                $(".lowSpan").parent().before($task);
+            }
+            else {
+                $today.append($task);
+            }
+        }
+
+        $editBar.bind("keydown", function (event) {
+            if (event.keyCode == 13 && ($("#editBar").val() != '')) {
+                var val = $("#editBar").val();
+                CreatTask(val);
+                $editBar.val("");
+            }
+        })
+
+        $add.bind("click", function () {
+            if ($("#editBar").val() != '') {
+                var val = $("#editBar").val();
+                CreatTask(val);
+                $editBar.val("");
+            }
+            isDisable();
+        })
+
+        $high.bind("click", function () {
+            var checked = $(".today input:checked");
+            checked.each(function () {
+                $(this).prop("checked", false);
+                $(this).next().removeClass().addClass('highSpan');
+                $today.prepend($(this).parent());
+                isDisable();
+            })
+        });
+
+        $low.bind("click", function () {
+            var checked = $(".today input:checked");
+            checked.each(function () {
+                $(this).prop("checked", false);
+                $(this).next().removeClass().addClass('lowSpan');
+                $today.append($(this).parent());
+                isDisable();
+            })
+        });
+
+        $normal.bind("click", function () {
+            var checked = $(".today input:checked");
+            checked.each(function () {
+                $(this).prop("checked", false);
+                $(this).next().removeClass();
+            })
+            checked.each(function () {
+                if (document.getElementsByClassName("lowSpan")[0] != undefined) {
+                    $(".lowSpan").parent().before($(this).parent());
+                }
+                else {
+                    $today.append($(this).parent());
+                }
+            })
+            isDisable();
+        });
+
+        $remove.bind("click", function () {
+            var checked = $("input:checked");
+            checked.each(function () {
+                $(this).parent().remove();
+            })
+            isDisable();
+        });
+
+        $done.bind("click", function () {
+            var checked = $("input:checked");
+            checked.each(function () {
+                $(this).prop("checked", false);
+                $(this).next().css("color", "rgb(121,121,121)");
+                $over.append($(this).parent());
+            })
+            isDisable();
+        });
+
+        $("input[type=checkbox]").click(function () {
+            isDisable();
+        });
+
+        function isDisable() {
+            if ($("input[type=checkbox]:checked").length > 0) {
+                if ($(".today input[type=checkbox]:checked").length > 0) {
+                    $done.removeAttr("disabled");
+                    $remove.removeAttr("disabled");
+                }
+                else {
+                    $remove.removeAttr("disabled");
+                    $done.prop("disabled", "true");
+                }
+            }
+            else {
+                $done.prop("disabled", "true");
+                $remove.prop("disabled", "true");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1431 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="auifw/css/auiframework.min.css" />
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            -moz-user-select: none; /*火狐*/
+            -webkit-user-select: none; /*webkit浏览器*/
+            -ms-user-select: none; /*IE10*/
+            -khtml-user-select: none; /*早期浏览器*/
+            user-select: none;
+        }
+
+        #main {
+            height: 100%;
+            width: 100%;
+            min-width: 1240px;
+            font-family: Verdana;
+            position: relative;
+            overflow: auto;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+        a:focus {
+            text-decoration: none;
+        }
+
+        .box-shadow {
+            box-shadow: rgb(227, 210, 210) 1px 1px 6px;
+        }
+
+        header {
+            height: 60px;
+            position: relative;
+            background-color: #5fb554;
+            z-index: 1000;
+        }
+
+            header > .nav-left {
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            header > .nav-center {
+                position: absolute;
+                left: 200px;
+                top: 0;
+            }
+
+        .nav-center > ul > li {
+            display: inline-block;
+            float: left;
+            padding: 5px 0;
+            height: 60px;
+        }
+
+        .nav-center li > a {
+            display: inline-block;
+            margin: 7px 5px 0 5px;
+            height: 36px;
+            padding: 10px 10px 0 10px;
+            color: rgb(255, 255, 255);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+            .nav-center li > a:hover {
+                background-color: rgb(85, 170, 85);
+            }
+
+            .nav-center li > a:active {
+                background-color: rgb(51, 153, 51);
+            }
+
+        .nav-center li:first-child > a {
+            height: 25px;
+            padding: 0;
+            margin: 12px 15px 0 15px;
+        }
+
+            .nav-center li:first-child > a:hover, .nav-center li:first-child > a:active {
+                background-color: transparent;
+            }
+
+        .nav-center li > .split-line {
+            display: block;
+            width: 1px;
+            background-color: rgb(153, 204, 153);
+            height: 18px;
+            margin-top: -25px;
+        }
+
+        span.fi-triangle-down-bs {
+            font-size: 11px;
+        }
+
+        .link-dropdown {
+            position: absolute;
+            background-color: white;
+            border: 1px solid rgb(187, 187, 187);
+            min-width: 160px;
+            max-width: 260px;
+            margin-top: 19px;
+            left: 389px;
+        }
+
+            .link-dropdown:hover {
+                background-color: rgb(243, 243, 243);
+            }
+
+            .link-dropdown li {
+                height: 36px;
+            }
+
+        .nav-center > ul > li .link-a {
+            width: 100%;
+            padding: 0 20px;
+            margin: 0px;
+            height: 100%;
+        }
+
+        .link-dropdown span {
+            color: #5fb554;
+            font-size: 13px;
+            float: left;
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+
+            .link-dropdown span:first-child {
+                font-size: 16px;
+            }
+
+        .nav-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+        }
+
+        .right-content {
+            float: right;
+            height: 100%;
+            background-color: rgb(85, 170, 85);
+            display: table;
+            width:130px;
+        }
+
+        .user-link {
+            display: table-cell;
+            vertical-align: middle;
+            padding: 0 20px 0 20px;
+        }
+
+            .user-link p {
+                margin: 5px 0px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: rgb(255, 255, 255);
+                font-size: 12px;
+                width:80px;
+            }
+
+        .right-logo {
+            float: right;
+            height: 100%;
+        }
+
+            .right-logo > li {
+                float: left;
+                height: 100%;
+                padding: 0;
+                margin-left: -2px;
+            }
+
+                .right-logo > li:hover span {
+                    color: rgb(187, 255, 187);
+                }
+
+                .right-logo > li a {
+                    display: inline-block;
+                    height: 100%;
+                    padding: 20px 20px 0 0;
+                }
+
+                .right-logo > li span {
+                    font-size: 24px;
+                    color: rgb(170, 238, 170);
+                }
+
+        .nav-user-dropdown {
+            position: absolute;
+            right: 0;
+            top: 60px;
+            width: 215px;
+            background-color: rgb(85, 170, 85);
+        }
+
+            .nav-user-dropdown > li {
+                padding: 0;
+                height: 36px;
+            }
+
+                .nav-user-dropdown > li:hover {
+                    background-color: rgb(102, 187, 102);
+                }
+
+                .nav-user-dropdown > li > a {
+                    width: 100%;
+                    padding: 0 15px 0 10px;
+                    display: inline-block;
+                    height: 36px;
+                    line-height: 36px;
+                    color: white;
+                }
+
+        .icon {
+            font-size: 16px;
+        }
+
+        #globalSearch {
+            position: absolute;
+            right: 320px;
+            top: 11px;
+            background-color: #589B4A;
+            border-color: #589B4A;
+            color: white;
+        }
+
+            #globalSearch > input {
+                padding-left: 15px;
+                color: white;
+            }
+
+        .textbox-search div.fi-search-a:before {
+            color: white;
+        }
+
+        .textbox-search div:hover.fi-search-a:before {
+            color: white;
+        }
+
+        #contentBody {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #breadcrumbNav {
+            height: 116px;
+            width: 100%;
+            background-color: rgb(238, 251, 238);
+            padding: 15px 0 15px 20px;
+            border-bottom: 1px solid rgb(95, 181, 84);
+            position: relative;
+            z-index: 100;
+        }
+
+        #top-image {
+            height: 44px;
+            width: 100px;
+            position: absolute;
+            top: 0;
+            right: 101px;
+            background-image: url(pencil_eraser_100x44.png);
+        }
+
+        #bottom-image {
+            height: 45px;
+            width: 46px;
+            position: absolute;
+            bottom: 0;
+            right: 35px;
+            background-image: url(triangular_rule_46x45.png);
+        }
+
+        #breadcrumb a {
+            color: #5fb554;
+            font-size: 14px;
+        }
+
+            #breadcrumb a:hover {
+                text-decoration: underline;
+                color: #66c355;
+            }
+
+        #breadcrumb .fi-page-home-a {
+            font-size: 16px;
+            text-decoration: none !important;
+        }
+
+        #breadcrumb span {
+            font-size: 14px;
+        }
+
+        #breadcrumb .fi-page-arrow-right-as {
+            position: relative;
+            top: 2px;
+        }
+
+        #selectModule {
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+            #selectModule > span {
+                display: block;
+                position: absolute;
+                line-height: 38px;
+                top: 48px;
+            }
+
+        .text-box {
+            display: block;
+            width: 502px;
+            height: 38px;
+            margin-left: 5px;
+            position: absolute;
+            left: 140px;
+        }
+
+            .text-box .fi-triangle-down-bs {
+                position: absolute;
+                top: 11px;
+                right: 7px;
+                cursor: pointer;
+            }
+
+            .text-box > input {
+                padding: 1px 22px 1px 5px;
+            }
+
+                .text-box > input:focus {
+                    outline: none;
+                }
+
+        .text-box-dropdown {
+            position: relative;
+            height: 266px;
+            margin-right: 21px;
+            width: 100%;
+            overflow: auto;
+            background-color: white;
+            border: 1px solid rgb(204, 204, 204);
+        }
+
+            .text-box-dropdown > li {
+                line-height: 33px;
+                height: 38px;
+                padding: 0px 22px 5px 10px;
+                margin-top: 1px;
+            }
+
+                .text-box-dropdown > li:hover {
+                    background-color: rgb(238, 251, 238);
+                }
+
+            .text-box-dropdown .active {
+                background-color: rgb(238, 251, 238);
+            }
+
+        #left-nav {
+            float: left;
+            width: 200px;
+            padding: 0px 10px 25px;
+            position: absolute;
+            top: 116px;
+            left: 0;
+            background-color: rgb(244, 248, 249);
+            bottom: 0;
+            z-index: 10;
+        }
+
+            #left-nav > .left-nav-pills a {
+                font-size: 13px;
+            }
+
+            #left-nav .expander {
+                margin: 15px 0px 10px;
+                padding: 0;
+                position: relative;
+            }
+
+                #left-nav .expander:first-child {
+                    margin-top: 20px;
+                }
+
+                #left-nav .expander .group-div {
+                    position: relative;
+                    font-weight: bold;
+                    font-size: 12px;
+                    padding: 10px 4px 10px 2px;
+                    margin-left: 6px;
+                    cursor: pointer;
+                }
+
+                    #left-nav .expander .group-div:hover .background-div {
+                        background-color: rgb(214, 235, 216);
+                    }
+
+                    #left-nav .expander .group-div:hover span {
+                        color: rgb(95, 181, 84);
+                    }
+
+                    #left-nav .expander .group-div:hover .fi-page-triangle-right-as, #left-nav .expander .group-div:hover .fi-page-triangle-bottom-right-as {
+                        color: rgb(95, 181, 84);
+                    }
+
+                #left-nav .expander span {
+                    display: inline-block;
+                    position: relative;
+                    line-height: 14px;
+                    background-color: rgb(244, 248, 249);
+                    word-break: break-word;
+                    word-wrap: break-word;
+                    padding-right: 4px;
+                    padding-left: 2px;
+                    color: rgb(85, 85, 85);
+                }
+
+                #left-nav .expander .group-div .fi-page-triangle-right-as, #left-nav .expander .group-div .fi-page-triangle-bottom-right-as {
+                    position: absolute;
+                    top: 8px;
+                    left: -12px;
+                    font-size: 16px;
+                }
+
+                #left-nav .expander .background-div {
+                    background-color: rgb(233, 236, 237);
+                    position: absolute;
+                    height: 6px;
+                    width: 166px;
+                    top: 13px;
+                    left: 6px;
+                }
+
+            #left-nav .subordinate {
+                padding: 0;
+                margin: 5px 0 0 0;
+            }
+
+                #left-nav .subordinate:hover {
+                    background-color: rgb(200, 236, 200);
+                }
+
+                    #left-nav .subordinate:hover .fi-page-arrow-right-as {
+                        color: rgb(200, 236, 200);
+                    }
+
+                #left-nav .subordinate a {
+                    color: rgb(51, 51, 51);
+                    padding: 10px;
+                    word-break: break-word;
+                    border-radius: 2px;
+                    display: block;
+                    position: relative;
+                }
+
+            #left-nav .fi-page-arrow-right-as {
+                position: absolute;
+                font-size: 16px;
+                right: 0;
+                top: 11px;
+                color: rgb(244, 248, 249);
+            }
+
+            #left-nav .left-nav-pills .active {
+                background-color: rgb(95, 181, 84);
+            }
+
+                #left-nav .left-nav-pills .active a {
+                    color: rgb(255, 255, 255);
+                }
+
+                #left-nav .left-nav-pills .active .fi-page-arrow-right-as {
+                    color: rgb(255, 255, 255);
+                }
+
+        #right-content {
+            position: relative;
+            top: 0px;
+            right: 0;
+            padding: 30px;
+            margin-left: 199px;
+            background-color: white;
+            border-left: 1px solid rgb(228, 228, 228);
+            min-height: 552px;
+        }
+
+            #right-content .content-header {
+                font-family: Verdana;
+                font-weight: bold;
+                font-size: 1.125em;
+            }
+
+        #main-content {
+            position: relative;
+        }
+
+        .margin-bottom {
+            margin: 0 0 20px 0;
+        }
+
+        .select-button {
+            display: inline-block;
+            background-color: #f3f7fa;
+            border: 1px solid #afc6e0;
+            height: 38px;
+            position: relative;
+            max-width: 240px;
+            cursor: default;
+            color: #0066dd;
+            margin-right: 30px;
+        }
+
+            .select-button:hover {
+                border-color: #4A9FD0;
+            }
+
+            .select-button .button-value {
+                padding: 0 22px 0 10px;
+                max-width: 210px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                line-height: 36px;
+                display: inline-block;
+                font-size: 13px;
+            }
+
+            .select-button .fi-triangle-down-bs {
+                font-size: 13px;
+                position: absolute;
+                top: 50%;
+                margin-top: -7.5px;
+                right: 11px;
+                margin-right: -6.5px;
+            }
+
+            .select-button .select-button-dropdown {
+                position: absolute;
+                width: 222px;
+                padding: 1px 0;
+                background-color: #FFFFFF;
+                border: 1px solid #bbbbbb;
+                z-index: 999;
+                top: 37px;
+                /*left:-1px;*/
+                left: -2000px;
+            }
+
+        .select-button-dropdown > label {
+            display: block;
+            position: relative;
+            height: 44px;
+        }
+
+            .select-button-dropdown > label > .inline-info {
+                font-size: 0.813rem;
+                white-space: normal;
+                word-break: break-all;
+                margin-left: 33px;
+                color: #222222;
+                line-height: 43px;
+            }
+
+            .select-button-dropdown > label > input {
+                margin: 0;
+                display: block;
+                position: absolute;
+                top: 50%;
+                margin-top: -8.5px;
+                left: 10px;
+            }
+
+        .select-button-dropdown .sbd-header {
+            border: 1px solid #ffffff;
+            border-bottom: 1px solid #e2e2e2;
+        }
+
+        .date-range .sbd-header {
+            border: 1px solid #ffffff;
+            border-bottom: 1px solid white;
+        }
+
+        .select-button-dropdown .sbd-content {
+            border: 1px solid #ffffff;
+        }
+
+            .select-button-dropdown .sbd-header:hover, .select-button-dropdown .sbd-content:hover {
+                background-color: #eefbee;
+            }
+
+        .select-button-dropdown .sbd-footer {
+            border-top: 1px solid #e2e2e2;
+        }
+
+            .select-button-dropdown .sbd-footer > span {
+                float: right;
+                color: #0066dd;
+                margin: 0 20px 0 0;
+                cursor: pointer;
+            }
+
+                .select-button-dropdown .sbd-footer > span:last-child {
+                    margin: 0 30px 0 0;
+                }
+
+        .middle-group > .middle-left {
+            display: inline-block;
+        }
+
+            .middle-group > .middle-left > a:hover {
+                text-decoration: underline;
+            }
+
+        .middle-group > .middle-right {
+            float: right;
+        }
+
+        #search-box {
+            height: 38px;
+            width: 510px;
+            border: 1px solid rgb(187, 187, 187);
+            display: inline-block;
+            margin-top: -7px;
+            position: relative;
+        }
+
+            #search-box:hover {
+                border-color: #4499dd;
+            }
+
+            #search-box > input {
+                border: none;
+                height: 36px;
+                padding: 0 27px 0 5px;
+            }
+
+            #search-box .fi-search-a {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 36px;
+                width: 36px;
+                cursor: pointer;
+                color: #99a1a5;
+                font-size: 16px;
+                line-height: 36px;
+                text-align: center;
+            }
+
+                #search-box .fi-search-a:hover {
+                    color: #88ccee;
+                }
+
+        #class-table {
+            position: relative;
+            table-layout: fixed;
+            border: 1px solid #e2e2e2;
+            background-color: white;
+            width: 100%;
+            text-align: left;
+            vertical-align: middle;
+            font-size: 13px;
+        }
+
+            #class-table th {
+                padding: 5px 10px;
+                text-align: left;
+                word-wrap: normal;
+            }
+
+            #class-table td {
+                padding: 13px 0 13px 10px;
+                height: 44px;
+                vertical-align: top;
+            }
+
+            #class-table tr:nth-of-type(2n) {
+                background-color: #f8f8f8;
+            }
+
+            #class-table thead {
+                background-color: #f8f8f8;
+            }
+
+            #class-table td:nth-child(4) {
+                padding-left: 0px;
+                text-align: center;
+            }
+
+            #class-table a {
+                font-size: 13px;
+                color: #4499dd;
+            }
+
+                #class-table a:hover {
+                    text-decoration: underline;
+                }
+
+        .page
+        {
+            position:relative;
+            height:32px;
+        }
+
+        .page > div {
+            float: right;
+        }
+
+        .pager-showrows-container {
+        }
+
+        .page-select {
+            display: inline-block;
+            position: relative;
+            width: 65px;
+            height: 32px;
+            border: 1px solid rgb(187, 187, 187);
+            margin-left: 5px;
+        }
+
+            .page-select:hover {
+                border-color: rgb(74, 159, 208);
+            }
+
+            .page-select > input[disabled] {
+                height: 100%;
+                width: 100%;
+                background-color: white;
+                border: none;
+                padding: 1px 22px 1px 5px;
+                color: black;
+            }
+
+            .page-select > .fi-triangle-down-bs {
+                position: absolute;
+                top: 9px;
+                right: 6px;
+                font-size: 10px;
+            }
+
+        .page-dropdown {
+            left: -1px;
+            top: -179px;
+            position: absolute;
+            width: 105%;
+            overflow: auto;
+            background-color: white;
+            border: 1px solid rgb(204, 204, 204);
+        }
+
+            .page-dropdown > li {
+                line-height: 32px;
+                height: 44px;
+                border: 1px solid white;
+                font-size: 13px;
+                padding-left: 10px;
+                cursor:default;
+                padding-top:5px;
+            }
+
+            .page-dropdown > li:first-child
+            {
+                padding-top:5px;
+            }
+
+                .page-dropdown > li:hover {
+                    background-color: rgb(238, 251, 238);
+                }
+
+            .page-dropdown .active {
+                background-color: rgb(238, 251, 238);
+            }
+
+            .pager-container
+            {
+                margin-top:6px;
+                margin-right:20px;
+            }
+
+                .pager-container > .page-num {
+                    display: inline-block;
+                    margin: 0px 15px 0 15px;
+                    height: 22px;
+                    width: 22px;
+                    line-height:22px;
+                    text-align: center;
+                    background: rgb(95, 181, 84);
+                    color: rgb(255, 255, 255);
+                    font-size:13px;
+                    cursor:pointer;
+                }
+
+        .direction {
+            background-color: white;
+            border: none;
+            color: rgb(209, 210, 211);
+        }
+
+        #main footer {
+            display: block;
+            position: relative;
+            padding-right: 20px;
+            height: 50px;
+            line-height: 50px;
+            background-color: #303B41;
+            z-index: 1000;
+            bottom: 0;
+        }
+
+        footer .right-text {
+            color: #8D9194;
+            float: right;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <header>
+            <div class="nav-left">
+                <a href="#">
+                    <img src="logo_200x60.png" width="200" height="60" class="logo" />
+                </a>
+            </div>
+            <div class="nav-center">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <span class="fi-page-home-bs image-large"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Modules</span>
+                        </a>
+                        <span class="split-line"></span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Bank</span>
+                        </a>
+                        <span class="split-line"></span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Survey</span>
+                        </a>
+                        <span class="split-line"></span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Summary</span>
+                        </a>
+                        <span class="split-line"></span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>Links</span>
+                            <span class="fi-triangle-down-bs"></span>
+                        </a>
+                        <span class="split-line"></span>
+                        <ul class="link-dropdown box-shadow" style="display:none;">
+                            <li>
+                                <a href="#" class="link-a">
+                                    <span class="fi-page-link-a"></span>
+                                    <span>Manage Links</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <div class="right-content">
+                    <a class="user-link" href="#">
+                        <p title="Alden Veracruz">Alden VeracruzAlden VeracruzAlden VeracruzAlden VeracruzAlden VeracruzAlden VeracruzAlden Veracruz</p>
+                        <p title="000011">ID:000011</p>
+                    </a>
+                    <div>
+                        <ul class="nav-user-dropdown box-shadow" style="display:none;">
+                            <li>
+                                <a href="#">
+                                    <span class="icon fi-page-simulate-a"></span>
+                                    <span>Simulate</span>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <span class="icon fi-page-help-a"></span>
+                                    <span>Help (F1)</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon fi-page-email-a"></span>
+                                    <span>Email Help Desk</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon fi-page-circle-info-a"></span>
+                                    <span>About LEO 2.0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="icon fi-page-sign-out-a"></span>
+                                    <span>Log Out</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="right-logo">
+                    <li>
+                        <div id="globalSearch" style="display:none; width:0;" class="textbox textbox-search">
+                            <input class="search-input" type="text" placeholder="">
+                            <div class="fi-search-a"></div>
+                        </div>
+                        <a id="searchTrigger" href="#" style="display: block;">
+                            <span class="fi-page-search-bs"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="My Calendar">
+                            <span class="fi-page-calendar-bs"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="My Tasks">
+                            <span class="fi-page-task-bs"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="Announcements">
+                            <span class="fi-page-announcement-bs"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" title="My Requests">
+                            <span class="fi-page-my-request-bs"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div id="contentBody">
+            <div id="breadcrumbNav">
+                <div id="breadcrumb">
+                    <a href="#" class="fi-page-home-a">
+                    </a>
+                    <a href="#">
+                        Home
+                    </a>
+                    <span class="fi-page-arrow-right-as"></span>
+                    <a href="#">
+                        Summary
+                    </a>
+                    <span class="fi-page-arrow-right-as"></span>
+                    <span class="breadcrumb-end">Class Schedule</span>
+                </div>
+                <div id="selectModule">
+                    <span>Select a Module:</span>
+                    <div class="text-box">
+                        <input type="text" />
+                        <div class="fi-triangle-down-bs"></div>
+                        <ul class="text-box-dropdown" style="display:none;">
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 1)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 2)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 3)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 4)</li>
+                            <li class="active">G115: PFP_Regular (AY2016 Sem1 Cohort: 5)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 6)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 7)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 8)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 9)</li>
+                            <li>G115: PFP_Regular (AY2016 Sem1 Cohort: 10)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="top-image"></div>
+                <div id="bottom-image"></div>
+            </div>
+            <div id="left-nav">
+                <ul class="left-nav-pills">
+                    <li class="expander">
+                        <div class="group-div">
+                            <div class="background-div"></div>
+                            <span>ATTENDANCE & GRADE</span>
+                            <div class="fi-page-triangle-right-as"></div>
+                        </div>
+                    </li>
+                    <li class="subordinate active">
+                        <a>Attendance Statistics<span class="fi-page-arrow-right-as"></span></a>
+                    </li>
+                    <li class="subordinate">
+                        <a>Grade Statistics<span class="fi-page-arrow-right-as"></span></a>
+                    </li>
+                    <li class="subordinate">
+                        <a>Attendance & Grade Details<span class="fi-page-arrow-right-as"></span></a>
+                    </li>
+                    <li class="expander">
+                        <div class="group-div">
+                            <div class="background-div"></div>
+                            <span>PUBLISHING</span>
+                            <div class="fi-page-triangle-bottom-right-as"></div>
+                        </div>
+                    </li>
+                    <li class="subordinate">
+                        <a>Lesson Publishing<span class="fi-page-arrow-right-as"></span></a>
+                    </li>
+                    <li class="subordinate">
+                        <a>Grade Publishing<span class="fi-page-arrow-right-as"></span></a>
+                    </li>
+                    <li class="expander">
+                        <div class="group-div">
+                            <div class="background-div"></div>
+                            <span>OTHERS</span>
+                            <div class="fi-page-triangle-right-as"></div>
+                        </div>
+                    </li>
+                    <li class="subordinate">
+                        <a>Class Schedule<span class="fi-page-arrow-right-as"></span></a>
+                    </li>
+                    <li class="subordinate">
+                        <a>Lecturer in Class Notification<span class="fi-page-arrow-right-as"></span></a>
+                    </li>
+                </ul>
+            </div>
+            <div id="right-content">
+                <div id="main-content">
+                    <div class="content-header margin-bottom">
+                        Attendance Statistics
+                    </div>
+                    <div class="margin-bottom select-group">
+                        <div class="select-button">
+                            <div class="button-value">Select Class: All</div>
+                            <div class="fi-triangle-down-bs"></div>
+                            <div class="select-button-dropdown">
+                                <label class="sbd-header"><input type="checkbox" id="ckb1" /><span class="inline-info" for="ckb1">All</span></label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">M331-1-W14L-A</span>
+                                </label>
+                                <label class="sbd-footer"><span class="inline-info">Cancel</span><span class="inline-info">OK</span></label>
+                            </div>
+                        </div>
+
+                        <div class="select-button date-range">
+                            <div class="button-value">Date Range: All</div>
+                            <div class="fi-triangle-down-bs"></div>
+                            <div class="select-button-dropdown">
+                                <label class="sbd-header"><input type="radio" name="all-duration" /><span class="inline-info">All</span></label>
+                                <label class="sbd-content">
+                                    <input type="radio" name="all-duration" /><span class="inline-info">From to</span>
+                                </label>
+                                <label class="sbd-footer"><span class="inline-info">Cancel</span><span class="inline-info">OK</span></label>
+                            </div>
+                        </div>
+
+                        <div class="select-button">
+                            <div class="button-value">Day: All</div>
+                            <div class="fi-triangle-down-bs"></div>
+                            <div class="select-button-dropdown">
+                                <label class="sbd-header"><input type="checkbox" id="ckb1" /><span class="inline-info" for="ckb1">All</span></label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">Wednesday</span>
+                                </label>
+                                <label class="sbd-footer"><span class="inline-info">Cancel</span><span class="inline-info">OK</span></label>
+                            </div>
+                        </div>
+
+                        <div class="select-button">
+                            <div class="button-value">Lesson: All</div>
+                            <div class="fi-triangle-down-bs"></div>
+                            <div class="select-button-dropdown">
+                                <label class="sbd-header"><input type="checkbox" id="ckb1" /><span class="inline-info" for="ckb1">All</span></label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">1</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">2</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">3</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">4</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">5</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">6</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">7</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">8</span>
+                                </label>
+                                <label class="sbd-footer"><span class="inline-info">Cancel</span><span class="inline-info">OK</span></label>
+                            </div>
+                        </div>
+
+                        <div class="select-button">
+                            <div class="button-value">Lecturer: All</div>
+                            <div class="fi-triangle-down-bs"></div>
+                            <div class="select-button-dropdown">
+                                <label class="sbd-header"><input type="checkbox" id="ckb1" /><span class="inline-info" for="ckb1">All</span></label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">Alden Veracruz</span>
+                                </label>
+                                <label class="sbd-content">
+                                    <input type="checkbox" id="ckb2" /><span class="inline-info" for="ckb2">Alden Veracruz</span>
+                                </label>
+                                <label class="sbd-footer"><span class="inline-info">Cancel</span><span class="inline-info">OK</span></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="middle-group">
+                        <div class="middle-left">
+                            <span class="fi-page-export-a text-blue image"></span>
+                            <a>Export</a>
+                        </div>
+                        <div class="middle-right">
+                            <div id="search-box">
+                                <input type="text" placeholder="Search for Class Code, Class Owner, Lecturer, and Covering Lecturer" />
+                                <div class="fi-search-a"></div>
+                            </div>
+                        </div>
+                        <div class="margin-top">
+                            <table id="class-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width:125px;">Class Code</th>
+                                        <th style="width:100px;">Date</th>
+                                        <th style="width:100px;">Day</th>
+                                        <th style="width:70px;">Lesson</th>
+                                        <th style="width:125px;">Class Owner</th>
+                                        <th style="width:130px;">Lecturer</th>
+                                        <th style="width:150px;">Covering Lecturer</th>
+                                        <th style="width:100px">Permanent Venue</th>
+                                        <th style="width:100px">Temporary Venue</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:classInfo">
+                                    <tr>
+                                        <td>
+                                            <a data-bind="text:classCode" target="_blank" href="#"></a>
+                                        </td>
+                                        <td data-bind="text:date"></td>
+                                        <td data-bind="text:day"></td>
+                                        <td>
+                                            <a data-bind="text:lesson" target="_blank" href="#"></a>
+                                        </td>
+                                        <td data-bind="text:classOwner"></td>
+                                        <td data-bind="text:lecturer"></td>
+                                        <td data-bind="text:coverLecturer"></td>
+                                        <td data-bind="text:permanentVenue"></td>
+                                        <td data-bind="text:temporaryVenue"></td>
+                                    </tr>                                  
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="margin-top page">
+                        <div class="pager-showrows-container">
+                            <span>Show rows: </span>
+                            <div class="page-select">
+                                <input type="text" value="10" disabled />
+                                <div class="fi-triangle-down-bs"></div>
+                                <ul class="page-dropdown" style="display:none;">
+                                    <li class="active">10</li>
+                                    <li>20</li>
+                                    <li>50</li>
+                                    <li>100</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pager-container">
+                            <button class="direction fi-triangle-left-bs"></button>
+                            <bottom class="page-num">1</bottom>
+                            <button class="direction fi-triangle-right-bs"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>       
+        <footer>
+            <span class="right-text">Powered by YTJ.</span>
+        </footer>
+    </div>
+    <script src="../../javascripts/jquery.min.js"></script>
+    <script src="../../javascripts/knockout-3.4.1.js"></script>
+    <script type="text/javascript">
+        $('*').not('.nav-user-dropdown').click(function () {
+            if ($('.nav-user-dropdown').css('display') == 'block') {
+                $('.nav-user-dropdown').css('display', 'none');
+                event.stopPropagation();
+            }
+        });
+
+        $('*').not('.link-dropdown').click(function () {
+            if ($('.link-dropdown').css('display') == 'block') {
+                $('.link-dropdown').css('display', 'none');
+                event.stopPropagation();
+            }
+        });
+
+        $('*').not('.text-box-dropdown').click(function () {
+            if ($('.text-box-dropdown').css('display') == 'block') {
+                $('.text-box-dropdown').css('display', 'none');
+                event.stopPropagation();
+            }
+        });
+
+        $('*').not('.page-dropdown').click(function () {
+            if ($('.page-dropdown').css('display') == 'block') {
+                $('.page-dropdown').css('display', 'none');
+                event.stopPropagation();
+            }
+        });
+
+        $('.nav-center > ul > li:last-child').click(function () {
+            $('.link-dropdown').css('display', 'block');
+            event.stopPropagation();
+        });
+
+        $('.right-content').click(function (event) {
+            $('.nav-user-dropdown').css('display', 'block');
+            event.stopPropagation();
+        });
+
+        $('.text-box').click(function (event) {
+            $('.text-box-dropdown').css('display', 'block');
+            event.stopPropagation();
+        });
+
+        $('.page-select').click(function (event) {
+            $('.page-dropdown').css('display', 'block');
+            event.stopPropagation();
+        });
+
+        $('#searchTrigger').click(function () {
+            $('#globalSearch').css('display', 'block').animate({
+                'width': '300px'
+            });
+            $('#searchTrigger').css('display', 'none');
+            $('#globalSearch > input').focus();
+        });
+
+        $('#globalSearch > input').blur(function () {
+            $('#globalSearch').animate({
+                'width': '0px'
+            }, "fast", function () {
+                $('#globalSearch').css('display', 'none');
+                $('#searchTrigger').css('display', 'block');
+            });
+        });
+
+        $('.fi-search-a').click(
+            $('#globalSearch > input').trigger('blur')
+        );
+
+        $('.text-box > input').val($('.text-box .active').text());
+        $('.text-box li').click(function () {
+            $(this).parent().find('li').removeClass('active');
+            $(this).addClass('active');
+            $('.text-box > input').val($('.text-box .active').text());
+        })
+
+        $('.page-dropdown li').click(function () {
+            $(this).parent().find('li').removeClass('active');
+            $(this).addClass('active');
+            $('.page-select > input').val($('.page-select .active').text());
+        })
+
+        $('.left-nav-pills .subordinate').click(function () {
+            $(this).parent().find('li').removeClass('active');
+            $(this).addClass('active');
+            $('#main-content > .content-header').text($(this).find('a').text());
+        })
+
+        $('.left-nav-pills .expander').toggle(function () {
+            $(this).nextUntil('.expander').css('display', 'none');
+            $(this).find('.fi-page-triangle-bottom-right-as').removeClass('fi-page-triangle-bottom-right-as').addClass('fi-page-triangle-right-as');
+        }, function () {
+            $(this).nextUntil('.expander').css('display', 'block');
+            $(this).find('.fi-page-triangle-right-as').removeClass('fi-page-triangle-right-as').addClass('fi-page-triangle-bottom-right-as');
+        })
+
+        $('.select-button').click(function () {
+            event = event || window.event
+            var obj = event.target || event.srcelement
+            if ($(obj).hasClass('fi-triangle-down-bs') || $(obj).hasClass('button-value')) {
+                if ($(this).find('.select-button-dropdown').css('left') == '-1px') {
+                    $(this).find('.select-button-dropdown').css('left', '-2000px');
+                }
+                else {
+                    $(this).parent().find('.select-button > .select-button-dropdown').css('left', '-2000px');
+                    $(this).find('.select-button-dropdown').css('left', '-1px');
+                }
+            }
+        });
+
+        $("body").click(function (event) {
+            event = event || window.event;
+            var obj = event.target || event.srcelement;
+            var allnot = true;
+
+            $('.select-button').each(function () {
+                $(this).find('*').each(function () {
+                    if (this == obj) {
+                        allnot = false;
+                        return false;
+                    }
+                });
+                if (allnot && $(this).find('.select-button-dropdown').css('left') == '-1px') {
+                    $(this).find('.select-button-dropdown').css('left', '-2000px');
+                }
+            });
+        });
+
+        $('.sbd-header').click(function () {
+            if (event.target.tagName.toLowerCase() == "input"&&$(event.target).attr('type') == 'checkbox') {
+
+                if ($(this).find('input').attr('checked') == 'checked') {
+                    $(this).parent().find('.sbd-content > input').attr('checked', 'true');
+                }
+                else {
+                    $(this).parent().find('.sbd-content > input').removeAttr('checked');
+                }
+
+            }
+        })
+
+        $('.sbd-content').click(function () {
+            if (event.target.tagName.toLowerCase() == "input" && $(event.target).attr('type') == 'checkbox') {
+                var allChecked = true;
+                $(this).parent().find('.sbd-content > input').each(function () {
+                    if ($(this).attr('checked') != 'checked') {
+                        allChecked = false;
+                        return false;
+                    }
+                });
+                if (allChecked) {
+                    $(this).parent().find('.sbd-header >input').attr('checked', 'true');
+                }
+                else {
+                    $(this).parent().find('.sbd-header >input').removeAttr('checked');
+                }
+            }
+        });
+
+        $('.sbd-footer').click(function () {
+            event = event || window.event;
+            var obj = event.target || event.srcelement;
+
+            if (obj == ($(this).find('span'))[0]) {
+                $(this).parent().css('left', '-2000px');
+            }
+            else if (obj == ($(this).find('span'))[1]) {
+                $(this).parent().css('left', '-2000px');
+            }
+        });
+
+        ko.applyBindings({
+            classInfo: [
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '1', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                },
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '2', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                },
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '3', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                },
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '4', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                },
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '5', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                },
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '6', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                },
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '7', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                },
+                {
+                    classCode: 'M331-1-W14L-A', date: '14/12/2016', day: 'Wednesday', lesson: '8', classOwner: 'Alden Veracruz', lecturer: 'Alden Veracruz', coverLecturer: '', permanentVenue: 'W14L'
+                    , temporaryVenue: ''
+                }
+            ]
+        });
+    </script>
+</body>
+</html>
