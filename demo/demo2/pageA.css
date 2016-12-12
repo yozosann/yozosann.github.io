@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 .a_background {
     width: 100%;
@@ -9,7 +9,7 @@
 .a_background_top{
     width: 100%;
     height: 71.6%;
-    background-image:url(images/background/a_background_top.png);
+    background-image:url(http://i1.piimg.com/567571/b0044788bfd50a6e.png);
     background-size: 100% 100%;
 }
 
@@ -17,14 +17,14 @@
 .a_background_middle{
     width: 100%;
     height: 13.1%;
-    background-image:url(images/background/a_background_middle.png);
+    background-image:url(http://i1.piimg.com/567571/9a602c4118896293.png);
     background-size: 100% 100%;
 }
 
 .a_background_botton{
     width: 100%;
     height: 15.3%;
-    background-image:url(images/background/a_background_botton.png);
+    background-image:url(http://i1.piimg.com/567571/663715e61ab9a91d.png);
     background-size: 100% 100%;
 }
 

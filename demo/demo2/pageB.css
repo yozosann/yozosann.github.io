@@ -1,16 +1,16 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 .b_background{
 	width:100%;
 	height:100%;
-	background-image:url(images/QixiB-dark.png);
+	background-image:url(http://i1.piimg.com/567571/50216f58e844df2f.png);
 	background-size:100% 100%;
 	position:absolute;
 }
 .b_background_preload{
-	background:url(images/QixiB-bright.png) -9999px -9999px;}
+	background:url(http://i1.piimg.com/567571/7d3902497fbf525d.png) -9999px -9999px;}
 .lamp-bright{
-	background-image:url(images/QixiB-bright.png);
+	background-image:url(http://i1.piimg.com/567571/7d3902497fbf525d.png);
 }
 .shop{
 	width:39.5%;
@@ -35,12 +35,12 @@
 }
 .door-left {
     left: 0%;
-    background:url(images/door-left.png);
+    background:url(http://i1.piimg.com/567571/87822374a04700dc.png);
     background-size: 100% 100%;
 }
 .door-right {
     left: 50%;
-    background:url(images/door-right.png);
+    background:url(http://i1.piimg.com/567571/7eb204361ac95863.png);
     background-size: 100% 100%;
 }
 
@@ -52,7 +52,7 @@
     position: absolute;
     z-index: 10;
     right: -91px;
-    background:url(images/bird.png) -182px 0px no-repeat;
+    background:url(http://i1.piimg.com/567571/5efd62eb38ac3614.png) -182px 0px no-repeat;
 }
 .birdFly{
     -webkit-animation-name: bird-slow;
@@ -67,30 +67,38 @@
 @-webkit-keyframes bird-slow {
     /* 鸟飞的动作 */
     0% {
-    background-position: -182px 0px;
-}
-50% {
-    background-position: 0px 0px;
-}
-75% {
-    background-position: -91px 0px;
-}
-100% {
-    background-position: -182px 0px;
+        background-position: -182px 0px;
+    }
+
+    50% {
+        background-position: 0px 0px;
+    }
+
+    75% {
+        background-position: -91px 0px;
+    }
+
+    100% {
+        background-position: -182px 0px;
+    }
 }
 
 @-moz-keyframes bird-slow {
     /* 鸟飞的动作 */
     0% {
-    background-position: -182px 0px;
-}
-50% {
-    background-position: 0px 0px;
-}
-75% {
-    background-position: -91px 0px;
-}
-100% {
-    background-position: -182px 0px;
+        background-position: -182px 0px;
+    }
+
+    50% {
+        background-position: 0px 0px;
+    }
+
+    75% {
+        background-position: -91px 0px;
+    }
+
+    100% {
+        background-position: -182px 0px;
+    }
 }
 

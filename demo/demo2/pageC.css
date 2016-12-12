@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* 背景图 */
 .c_background{
 	width:100%;
@@ -9,25 +9,25 @@
 .c_background_top{
 	width:100%;
 	height:71.6%;
-	background-image:url(images/background/c_background_top.png);
+	background-image:url(http://i1.piimg.com/567571/b8b41ed0abf14e4f.png);
 	background-size:100% 100%;
 }
 .c_background_middle{
     width: 100%;
     height: 13.1%;
-    background-image: url(images/background/c_background_middle.png);
+    background-image: url(http://i1.piimg.com/567571/5e64468a1cf4e2ba.png);
     background-size: 100% 100%;
 }
 .c_background_botton{
     width: 100%;
     height: 15.3%;
-    background-image: url(images/background/c_background_botton.png);
+    background-image: url(http://i1.piimg.com/567571/bb27ef688e17460a.png);
     background-size: 100% 100%;
 }
 
 /*小女孩*/
 #girl {
-    background: url(images/girl.png) -755px -0px no-repeat;
+    background: url(http://i1.piimg.com/567571/f8068f0a87b49a70.png) -755px -0px no-repeat;
     position: absolute;
 /*    right: 40%;
     top: 37%;*/
@@ -68,7 +68,7 @@
     height: 15px;
     top: 13%;
     left: 35%;
-    background: url(images/water.png) -261px -0px no-repeat;
+    background: url(http://p1.bqimg.com/567571/e61d44da7e644632.png) -261px -0px no-repeat;
 }
 
 .water_2 {
@@ -76,7 +76,7 @@
     height: 9px;
     top: 30%;
     left: 45%;
-    background: url(images/water.png) -693px -0px no-repeat;
+    background: url(http://p1.bqimg.com/567571/e61d44da7e644632.png) -693px -0px no-repeat;
 	-webkit-animation-delay:2s;
 }
 
@@ -85,7 +85,7 @@
     height: 29px;
     top: 50%;
     left: 15%;
-    background: url(images/water.png) -0px -0px no-repeat;
+    background: url(http://p1.bqimg.com/567571/e61d44da7e644632.png) -0px -0px no-repeat;
 	-webkit-animation-delay:1s;
 }
 
@@ -94,7 +94,7 @@
     height: 12px;
     top: 75%;
     left: 30%;
-    background: url(images/water.png) -392px -0px no-repeat;
+    background: url(http://p1.bqimg.com/567571/e61d44da7e644632.png) -392px -0px no-repeat;
 	-webkit-animation-delay:3s;
 }
 
@@ -109,7 +109,7 @@
     position: absolute;
     width: 30px;
     height: 31px;
-    background-image: url(images/stars.png);
+    background-image: url(http://p1.bqimg.com/567571/caf96b93c961d3ac.png);
 	-webkit-animation-name:flash;
     -webkit-animation-timing-function: ease-in-out;
     -webkit-animation-iteration-count: infinite;
@@ -271,7 +271,7 @@
 .logo{
 	width:191px;
 	height:65px;
-	background-image:url(images/logo.png);
+	background-image:url(http://oi2eedr7y.bkt.clouddn.com/16-12-12/61126065-file_1481533908855_38a3.png);
 	z-index:9999;
 	position:absolute;
 	left:50%;

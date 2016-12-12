@@ -1,12 +1,12 @@
 // SnowFly
 function Fly(){
   var snow = {};
-  var snowFlakeURI = ['images/snowflake/snowflake1.png',
-					  'images/snowflake/snowflake2.png',
-					  'images/snowflake/snowflake3.png',
-					  'images/snowflake/snowflake4.png',
-					  'images/snowflake/snowflake5.png',
-					  'images/snowflake/snowflake6.png'];
+  var snowFlakeURI = ['http://oi2eedr7y.bkt.clouddn.com/16-12-12/63431145-file_1481534219334_1edf.png',
+					  'http://oi2eedr7y.bkt.clouddn.com/16-12-12/46670356-file_1481534219446_15892.png',
+					  'http://oi2eedr7y.bkt.clouddn.com/16-12-12/72418497-file_1481534219551_4e61.png',
+					  'http://oi2eedr7y.bkt.clouddn.com/16-12-12/64600281-file_1481534219654_6e4.png',
+					  'http://oi2eedr7y.bkt.clouddn.com/16-12-12/84264887-file_1481534219764_22df.png',
+					  'http://oi2eedr7y.bkt.clouddn.com/16-12-12/27300292-file_1481534219872_a93f.png'];
 					  
   var visualWidth = container.offsetWidth;
   var visualHeight = container.offsetHeight;

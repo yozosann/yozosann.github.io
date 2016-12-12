@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
     * {
         padding: 0;
@@ -39,7 +39,7 @@
 .charector{
 	width:151px;
 	height:291px;
-	background:url(images/boy.png) -0px -291px no-repeat;
+	background:url(images/http://oi2eedr7y.bkt.clouddn.com/16-12-12/76176743-file_1481534435707_7fec.png) -0px -291px no-repeat;
 	position:absolute;
 	left:6%;
 	top:55%;
@@ -89,7 +89,7 @@
 }
 /* 太阳的式样 */
 #sun{
-	background:url(images/sun.png) no-repeat;
+	background:url(http://oi2eedr7y.bkt.clouddn.com/16-12-12/76093290-file_1481534071057_d9b2.png) no-repeat;
 	position:absolute;
 	z-index:1;
 	top:-30px;
@@ -130,12 +130,12 @@
 	height:101px;
 	left:-5%;
 	top:15%;
-	background:url(images/cloud1.png);}
+	background:url(http://oi2eedr7y.bkt.clouddn.com/16-12-12/15408305-file_1481534091756_13cf5.png);}
 .cloud2{
 	width:301px;
 	height:140px;
 	right:-5%;
-	background:url(images/cloud2.png)
+	background:url(http://oi2eedr7y.bkt.clouddn.com/16-12-12/24266335-file_1481534109852_a91f.png);
 }
 .cloud1Anim{
 	-webkit-animation-name:smallCloud;
