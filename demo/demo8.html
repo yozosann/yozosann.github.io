@@ -1,0 +1,988 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+            ul > li > a {
+                text-decoration: none;
+                color: white;
+            }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            font-family: Microsoft YaHei;
+        }
+
+        .wrap {
+            height: 100%;
+            min-width: 1100px;
+            position: relative;
+        }
+
+        .header {
+            height: 56px;
+            width: 100%;
+            background-color: rgb(24,34,61);
+            position: absolute;
+            top: 0;
+            text-align: center;
+            z-index: 100;
+        }
+
+            .header > div {
+                position: absolute;
+                height: 100%;
+            }
+
+            .header > .logo {
+                left: 0;
+                padding: 6px 0 0 28px;
+            }
+
+            .header > .menu {
+                width: 684px;
+                left: 50%;
+                margin-left: -342px;
+                padding-left: 40px;
+            }
+
+            .header > .headerOther {
+                right: 0;
+            }
+
+        .unlogin {
+            margin: 15px 10px 0 10px;
+        }
+
+            .unlogin > a {
+                display: block;
+                float: left;
+                margin-left: 11px;
+            }
+
+            .unlogin > .login, .unlogin > .register {
+                color: rgba(255,255,255,0.5);
+                text-decoration: none;
+                height: 27px;
+                width: 48px;
+                border: 1px solid #fff;
+                font-size: 13px;
+                line-height: 27px;
+                border-radius: 15px;
+            }
+
+            .unlogin > a:last-child {
+                margin-left: 3px;
+            }
+
+            .unlogin > .login:hover, .unlogin > .register:hover {
+                color: rgba(255,255,255,1);
+                transition: color 0.2s linear;
+            }
+
+            .unlogin > .img:hover {
+                transform: translateY(2px);
+            }
+
+        .menuList {
+            line-height: 56px;
+            color: #fff;
+        }
+
+            .menuList > li {
+                float: left;
+                display: list-item;
+                cursor: pointer;
+            }
+
+                .menuList > li:hover > a {
+                    color: rgba(255,255,255,1);
+                    transition: color 0.2s linear;
+                }
+
+                .menuList > li > a {
+                    color: rgba(255,255,255,0.5);
+                }
+
+                .menuList > li:first-child > a {
+                    color: rgba(255,255,255,1);
+                }
+
+                .menuList > li > a > span {
+                    position: absolute;
+                    text-align: center;
+                    top: 23px;
+                    width: 12px;
+                    height: 12px;
+                    background-color: rgb(64, 144, 255);
+                    left: -3px;
+                }
+
+        #bottomBlue {
+            display: inline-block;
+            height: 4px;
+            width: 100%;
+            background-color: rgb(64, 144, 255);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .body {
+            height: 100%;
+            width: 100%;
+            background-image: url(http://oi2eedr7y.bkt.clouddn.com/16-12-13/37600392-file_1481620144409_179ed.jpg);
+            background-size: cover;
+        }
+
+        .content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+        }
+
+        #stage {
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+            -webkit-perspective: 2000px;
+            overflow: hidden;
+        }
+
+        #wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        .circle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+
+        .c1 {
+            animation: circleRotate1 150s linear infinite;
+        }
+
+        .c2 {
+            animation: circleRotate2 150s linear infinite;
+        }
+
+        @keyframes circleRotate1 {
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes circleRotate2 {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .ball-scale-multiple {
+            position: absolute;
+        }
+
+        .ball1 {
+            right: 43%;
+            bottom: 18%;
+        }
+
+        .ball2 {
+            right: 60%;
+            bottom: 22%;
+        }
+
+        .ball-scale-multiple > div {
+            background-color: #48f0ff;
+            border-radius: 50%;
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            left: 0;
+            right: 0;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .ball-scale-multiple > span {
+            position: absolute;
+            color: rgba(255,255,255,0.8);
+            font-size: 13px;
+            top: 11px;
+            left: 33px;
+            white-space: nowrap;
+            overflow: visible;
+        }
+
+        .ball-scale-multiple > div:nth-child(1) {
+            opacity: 0;
+            background-color: white;
+            -webkit-animation: ball-scale-multiple1 2s 0s linear infinite;
+            animation: ball-scale-multiple1 1.5s 0s linear infinite;
+        }
+
+        .ball-scale-multiple > div:nth-child(2) {
+            opacity: 0;
+            background-color: white;
+            -webkit-animation: ball-scale-multiple2 2s 0s linear infinite;
+            animation: ball-scale-multiple2 1.5s 0s linear infinite;
+        }
+
+        .ball-scale-multiple > div:nth-child(3) {
+            -webkit-transform: scale(0.25);
+            transform: scale(0.25);
+        }
+
+        @-webkit-keyframes ball-scale-multiple1 {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 0.5;
+            }
+
+            100% {
+                -webkit-transform: scale(1);
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes ball-scale-multiple2 {
+            0% {
+                -webkit-transform: scale(0);
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            5% {
+                opacity: 1;
+            }
+
+            100% {
+                -webkit-transform: scale(2);
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        .bigTitle {
+            width: auto;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            height: 30px;
+            width: 100%;
+        }
+
+        .search-box-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 78px;
+            width: 466px;
+            margin-left: -233px;
+            margin-top: 10px;
+        }
+
+        @media only screen and (max-height: 774px) {
+            .search-box-container {
+                width: 375px;
+                margin-left: -187.5px;
+            }
+        }
+
+        .search-box {
+            height: 50px;
+            padding: 3px;
+            border: 1px solid #818db5;
+        }
+
+        .search-footer {
+            margin-top: 15px;
+            height: 30px;
+            text-align: center;
+        }
+
+            .search-footer > .footerUl {
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+                line-height: 30px;
+            }
+
+                .search-footer > .footerUl a {
+                    color: rgba(255, 255, 255, 0.701961);
+                }
+
+        .search-box-inner {
+            position: relative;
+            height: 46px;
+            border: 2px solid #c2c9de;
+            line-height: 46px;
+            background-color: rgba(42,56,91,.3);
+        }
+
+        .leftTag {
+            width: 90px;
+            height: 24px;
+            position: relative;
+            z-index: 1003;
+            float: left;
+            padding: 11px 6px;
+            border-right: 2px solid #6d759f;
+            font-size: 15px;
+            line-height: 20px;
+            color: #cccad7;
+            cursor: pointer;
+        }
+
+            .leftTag:hover {
+                color: white;
+            }
+
+                .leftTag:hover .hover-logo {
+                    border: 7px solid transparent;
+                    border-bottom-color: white;
+                    border-top: none;
+                }
+
+            .leftTag span {
+                cursor: pointer;
+                display: inline-block;
+                overflow: hidden;
+                width: 82%;
+                text-align: center;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+
+            .leftTag .hover-logo {
+                position: absolute;
+                top: 50%;
+                right: 7px;
+                margin-top: -4.5px;
+                display: inline-block;
+                height: 0;
+                width: 0;
+                border: 7px solid transparent;
+                border-top-color: white;
+                border-bottom: none;
+            }
+
+            .leftTag .hiddenTag {
+                display: none;
+                width: 102px;
+                border: 2px solid rgba(42,56,91,.3);
+                margin: 11px 0 15px -8px;
+                font-size: 14px;
+                background-color: white;
+            }
+
+            .leftTag:hover .hiddenTag {
+                display: block;
+            }
+
+        .hiddenTag li {
+            height: 38px;
+            line-height: 38px;
+            padding-left: 7px;
+        }
+
+            .hiddenTag li:hover {
+                transition: background-color 200ms;
+                background-color: rgb(235,235,240);
+            }
+
+        .hiddenTag a {
+            color: rgb(51, 71, 132);
+        }
+
+        .middleInput {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            height: 46px;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        #searchBar {
+            margin: 1px 10px 0 8px;
+            padding: 13px 0 12px 0;
+            background-color: rgba(0,0,0,0);
+            border: none;
+            outline: none;
+            color: white;
+            font-family: Arial;
+            font-size: 15px;
+        }
+
+        .rightBottom {
+            float: right;
+            color: #0d67d8;
+            background-color: #fff;
+            height: 46px;
+            width: 78px;
+            line-height: 46px;
+            text-align: center;
+            color: rgb(51, 71, 132);
+            font-size: 15px;
+        }
+
+            .rightBottom:hover {
+                cursor: pointer;
+            }
+
+                .rightBottom:hover a {
+                    transform: translateY(1px);
+                }
+
+            .rightBottom a {
+                display: block;
+            }
+
+        .footer > ul {
+            width: 395px;
+            height: 100%;
+            position: relative;
+            left: 50%;
+            bottom: 0;
+            margin-left: -197.5px;
+        }
+
+        .footerUl li {
+            float: left;
+            font-family: 'Microsoft YaHei';
+            color: rgba(255, 255, 255, 0.901961);
+            font-size: 10px;
+            -webkit-text-size-adjust: none;
+            font-weight: 200;
+        }
+
+            .footerUl li a {
+                color: rgba(255, 255, 255, 0.901961);
+                cursor: pointer;
+                display: inline;
+                font-family: 宋体;
+                font-size: 12px;
+                height: auto;
+                line-height: 30px;
+                padding: 0 5px;
+            }
+
+            .footerUl li:hover a {
+                color: rgba(255, 255, 255, 1);
+            }
+    </style>
+    <script type="text/javascript" src="../javascripts/jquery.min.js"></script>
+    <script type="text/javascript" src="../javascripts/radial-line.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <div class="logo">
+                <a href="#/"><img src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/60526211-file_1481620177536_6246.jpg" />  </a>
+            </div>
+            <div class="menu">
+                <ul class="menuList">
+                    <li style="position:relative;width:66px;"><a href="#"><span></span>首页</a></li>
+                    <li style="width:98px"><a href="#">社会招聘</a></li>
+                    <li style="width:98px"><a href="#">校园招聘</a></li>
+                    <li style="width:114px"><a href="#">实习生招聘</a></li>
+                    <li style="width:135.563px"><a href="#">Global Talent</a></li>
+                    <li style="width:98px"><a href="#">了解百度</a></li>
+                </ul>
+                <div id="bottomBlue" style="left:57px;width:32px"></div>
+            </div>
+
+            <div class="headerOther">
+                <div class="unlogin">
+                    <a class="login" href="#">登陆</a>
+                    <a class="register" href="#">注册</a>
+                    <a class="img" href="#"><img src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/31619302-file_1481620213945_a060.jpg" width="30" height="30" /></a>
+                    <a class="img" href="#"><img src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/51367588-file_1481620228503_136e6.jpg" width="30" height="30" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="content">
+                <div id="stage">
+                    <div id="wrapper" style="transform:rotateX(0deg)">
+                        <!--<canvas id="myCanvas"></canvas>-->
+                    </div>
+                </div>
+                <div>
+                    <img class="circle c1" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/37804291-file_1481620242435_232c.png" />
+                    <img class="circle c2" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/37804291-file_1481620242435_232c.png" />
+                    <img class="circle c3" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/92185989-file_1481620258623_98d0.png" />
+                    <img class="circle bigTitle" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/97835038-file_1481620272407_3b78.png" />
+                </div>
+                <svg id="svgByYozo" xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>
+                <div class="search-box-container">
+                    <div class="search-box">
+                        <div class="search-box-inner">
+                            <div class="leftTag">
+                                <a>
+                                    <span>社会招聘</span>
+                                    <span class="hover-logo"></span>
+                                </a>
+                                <ul class="hiddenTag">
+                                    <li>
+                                        <a>社会招聘</a>
+                                    </li>
+                                    <li>
+                                        <a>校园招聘</a>
+                                    </li>
+                                    <li>
+                                        <a>实习生招聘</a>
+                                    </li>
+                                    <li>
+                                        <a>Global talent</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="middleInput">
+                                <input id="searchBar" type="text" />
+                            </div>
+                            <div class="rightBottom">
+                                <a>
+                                    百度一下
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-footer">
+                        <ul class="footerUl">
+                            <li>
+                                <a href="#">技术</a>
+                                |
+                            </li>
+                            <li>
+                                <a href="#">产品</a>
+                                |
+                            </li>
+                            <li>
+                                <a href="#">客户服务</a>
+                                |
+                            </li>
+                            <li>
+                                <a href="#">市场与销售</a>
+                                |
+                            </li>
+                            <li>
+                                <a href="#">管理支持</a>
+                                |
+                            </li>
+                            <li>
+                                <a href="#">用户体验</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="ball1 ball-scale-multiple">
+                    <div></div>
+                    <div></div>
+                    <div></div><span>2017年百度校招</span>
+                </div>
+                <div class="ball2 ball-scale-multiple">
+                    <div></div>
+                    <div></div>
+                    <div></div><span>2017百度搜索公司销售体系管理培训生校招</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <ul class="footerUl">
+            <li><a href="#">使用百度前必读</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li><a href="#">招聘帮助</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li><a href="#">百度公益</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li><a href="#">百度校园</a>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li><a href="#">关于百度</a></li>
+        </ul>
+    </div>
+    <script>
+        var lis = document.querySelectorAll('.menuList > li');
+        var ul = document.querySelector('.menuList');
+
+        for(var i = 0;i<lis.length;i++)
+        {
+            (function (i) {
+                $(lis[i]).bind('mouseover', function () {
+                    var _left = 0;
+                    var _width = $(this).find('a').width();
+                    for (var j = 0; j < i; j++) {
+                        _left += pxToFloat(lis[j].style.width);
+                    }
+                    _left += 57;
+                    document.getElementById('bottomBlue').style.transition = "width 0.4s, left 0.4s";
+                    document.getElementById('bottomBlue').style.left = _left + 'px';
+                    document.getElementById('bottomBlue').style.width = _width + 'px';
+                });
+            })(i)
+        }
+        $(ul).bind('mouseleave', function () {
+            document.getElementById('bottomBlue').style.transition = "width 0.4s, left 0.4s";
+            document.getElementById('bottomBlue').style.left = 57 + 'px';
+            document.getElementById('bottomBlue').style.width = 32 + 'px';
+        });
+
+        $('.hiddenTag').bind('click', function (event) {
+            var target = event.target;
+            if (target.tagName.toLowerCase() == "a" || target.tagName.toLowerCase() == "li") {
+                var value = target.tagName.toLowerCase() == "a" ? $(target).text() : $(target).children().text();
+                $('.leftTag span').text(value);
+            }
+        })
+
+        circleSet();
+
+        //将px数据字符串转为float型
+        function pxToFloat(nowPos) {
+            var begin, end;
+            if (nowPos.indexOf('translate') != -1) {
+                begin = nowPos.indexOf('translateY(') + 11;
+                end = nowPos.indexOf('p', begin);
+                return nowPos = parseFloat(nowPos.substring(begin, end));
+            }
+            else {
+                end = nowPos.indexOf('p');
+                return nowPos = parseFloat(nowPos.substring(0, end));
+            }
+        }
+
+        function circleSet() {
+            var HEIGHT = window.innerHeight;
+            var circles = document.querySelectorAll('.circle');
+            for (var i = 0; i < circles.length; i++)
+            {
+                switch (i) {
+                    case 0:
+                        {
+                            circles[i].style.height = HEIGHT * 0.745 + 'px';
+                            circles[i].style.width = HEIGHT * 0.745 + 'px';
+                            circles[i].style.marginLeft = "-" + HEIGHT * 0.745 / 2 + 'px';
+                            circles[i].style.marginTop = "-" + HEIGHT * 0.745 / 2 + 'px';
+                        }
+                        break;
+                    case 1:
+                        {
+                            circles[i].style.height = HEIGHT * 1.32 + 'px';
+                            circles[i].style.width = HEIGHT * 1.32 + 'px';
+                            circles[i].style.marginLeft = "-" + HEIGHT * 1.32 / 2 + 'px';
+                            circles[i].style.marginTop = "-" + HEIGHT * 1.32 / 2 + 'px';
+                        }
+                        break;
+                    case 2:
+                        {
+                            circles[i].style.height = HEIGHT * 0.745 + 'px';
+                            circles[i].style.width = HEIGHT * 0.745 + 'px';
+                            circles[i].style.marginLeft = "-" + HEIGHT * 0.77 / 2 + 'px';
+                            circles[i].style.marginTop = "-" + HEIGHT * 0.73 / 2 + 'px';
+                        }
+                        break;
+                    case 3:
+                        {
+                            circles[i].style.height = HEIGHT * 0.42 + 'px';
+                            circles[i].style.marginLeft = "-" + circles[i].clientWidth / 2 + 'px';
+                            circles[i].style.marginTop = "-" + (HEIGHT * 0.42 / 2 + HEIGHT * 0.155) + 'px';
+                        }
+                        break;
+                }
+            }
+
+            var midIn = document.querySelector('.middleInput');
+            midIn.style.left = document.querySelector('.leftTag').offsetWidth + 'px';
+            midIn.style.right = document.querySelector('.rightBottom').offsetWidth + 'px';
+        }
+
+        window.onload = function () {
+            drawAllPoints();
+        }
+
+        window.onresize = function () {
+            circleSet();
+            drawAllPoints();
+        }
+
+        // 以下部分为射线效果
+
+        var configObj = {
+            "fontFamily": "Microsoft YaHei",
+            "target": "_blank",
+            "drawLineNeedTime": 1000,
+            "polygonArray": [{
+                "mainContent": {
+                    "point": {
+                        "x": 0.3245,
+                        "y": 0.5835,
+                        "r": 4.5,
+                        "color": "rgba(255,78,207,0.9)"
+                    },
+                    "texts": [{
+                        "offsetX": -65,
+                        "offsetY": 4.5,
+                        "fontSize": "13px",
+                        "color": "rgba(255,255,255,0.8)",
+                        "value": "金融服务",
+                        "href": "#"
+                    }]
+                },
+                "otherContent": {
+                    "r": 3.5,
+                    "textFontSize": "10px",
+                    "pointColor": "rgba(255,255,255,0.4)",
+                    "textColor": "rgba(255,255,255,0.4)",
+                    "points": [
+                    { "x": -0.1182, "y": -0.0128, "isLink": true },
+                    { "x": -0.0727, "y": -0.0771, "isLink": false },
+                    { "x": -0.0145, "y": 0.1029, "isLink": true },
+                    { "x": -0.1, "y": 0.09, "isLink": true }
+                    ],
+                    "texts": [[{
+                        "offsetX": -55,
+                        "offsetY": 3.5,
+                        "value": "理财业务",
+                        "href": "#"
+                    }], [{
+                        "offsetX": -55,
+                        "offsetY": 4.5,
+                        "value": "百度钱包",
+                        "href": "#"
+                    }], [{
+                        "offsetX": 10,
+                        "offsetY": 4.5,
+                        "value": "消费信贷",
+                        "href": "#"
+                    }], [{
+                        "offsetX": -25,
+                        "offsetY": 20,
+                        "value": "金融风控",
+                        "href": "#"
+                    }]]
+                }
+            }, {
+                "mainContent": {
+                    "point": {
+                        "x": 0.6845,
+                        "y": 0.3393,
+                        "r": 4.5,
+                        "color": "#ffde00"
+                    },
+                    "texts": [{
+                        "offsetX": -65,
+                        "offsetY": 4.5,
+                        "fontSize": "13px",
+                        "color": "rgba(255,255,255,0.8)",
+                        "value": "搜索公司",
+                        "href": "#"
+                    }]
+                },
+                "otherContent": {
+                    "r": 3.5,
+                    "textFontSize": "10px",
+                    "pointColor": "rgba(255,255,255,0.4)",
+                    "textColor": "rgba(255,255,255,0.4)",
+                    "points": [
+                    { "x": -0.0727, "y": -0.0385, "isLink": true },
+                    { "x": -0.0181, "y": -0.0964, "isLink": true },
+                    { "x": 0.0546, "y": -0.0642, "isLink": true },
+                    { "x": 0.091, "y": -0.0128, "isLink": true },
+                    { "x": -0.0181, "y": 0.0565, "isLink": false },
+                    ],
+                    "texts": [[{
+                        "offsetX": -55,
+                        "offsetY": 3.5,
+                        "value": "百度糯米",
+                        "href": "#"
+                    }], [{
+                        "offsetX": 10,
+                        "offsetY": 4.5,
+                        "value": "大搜索",
+                        "href": "#"
+                    }, {
+                        "offsetX": 58,
+                        "offsetY": 4.5,
+                        "value": "凤巢",
+                        "href": "#"
+                    }], [{
+                        "offsetX": 10,
+                        "offsetY": 4.5,
+                        "value": "百度地图",
+                        "href": "#"
+                    }], [{
+                        "offsetX": 10,
+                        "offsetY": 4.5,
+                        "value": "个人云",
+                        "href": "#"
+                    }, {
+                        "offsetX": 58,
+                        "offsetY": 4.5,
+                        "value": "贴吧",
+                        "href": "#"
+                    }, {
+                        "offsetX": 94,
+                        "offsetY": 4.5,
+                        "value": "输入法",
+                        "href": "#"
+                    }, {
+                        "offsetX": 142,
+                        "offsetY": 4.5,
+                        "value": "浏览器",
+                        "href": "#"
+                    }], [{
+                        "offsetX": 10,
+                        "offsetY": 4.5,
+                        "value": "知识搜素",
+                        "href": "#"
+                    }, {
+                        "offsetX": 70,
+                        "offsetY": 4.5,
+                        "value": "移动分发",
+                        "href": "#"
+                    }, {
+                        "offsetX": 130,
+                        "offsetY": 4.5,
+                        "value": "商业生态",
+                        "href": "#"
+                    }]]
+                }
+            }]
+        }
+
+        var svg = document.getElementById('svgByYozo');
+        var radialByYozo = new RayMap(svg, configObj,true);
+        radialByYozo.draw();
+
+
+
+
+        //以下为粒子星空背景
+        var $wrapper = $('#wrapper');
+
+        function randomNum(x, y) {
+            return Math.floor(Math.random() * (y - x + 1) + x);
+        }
+        function randomColor() {
+            return "rgb(" + randomNum(0, 255) + "," + randomNum(0, 255) + "," + randomNum(0, 255) + ")";
+        }
+
+        $(document).mousemove(function (e) {
+            transDeg = pxToFloat($wrapper[0].style.transform);
+            if (e.pageX <= $(window).width() / 2 && e.pageX >= $(window).width() * 0.225) {
+                transDeg = (($(window).width() * 0.5 - e.pageX) / ($(window).width() * 0.275)) * -45;
+            }
+            else if (e.pageX >= $(window).width() / 2 && e.pageX <= $(window).width() * 0.775) {
+                transDeg = ((e.pageX - $(window).width() * 0.5) / ($(window).width() * 0.275)) * 45;
+            }
+            $wrapper[0].style.transform = 'rotateY(' + transDeg + 'deg)';
+        });
+
+        function creatPoint(isRegular) {
+            var point = $('<div></div>');
+            var upperLimit, lowerLimit;
+            var A = $wrapper.width();
+            var B = $wrapper.height();
+
+            var b = 3 * B / 4;
+            var k = -B / (4 * A);
+
+            this.r = isRegular ? randomNum(1.5, 2) : randomNum(2, 4);
+            this.x = randomNum(this.r, A - this.r);
+
+            if (isRegular) {
+                if (this.x <= 1 / 2 * A) {
+                    upperLimit = k * (A - this.x) + b;
+                    lowerLimit = B - upperLimit;
+                }
+                else {
+                    upperLimit = k * this.x + b;
+                    lowerLimit = B - upperLimit;
+                }
+                this.y = randomNum(lowerLimit, upperLimit);
+            }
+            else {
+                this.y = randomNum(this.r, B - this.r);
+            }
+
+            point.css({
+                "position": "absolute",
+                "width": this.r + "px",
+                "height": this.r + "px",
+                "background-color": "rgba(255, 255, 255, 0.83)",
+                "bottom": this.y + "px",
+                "left": this.x + "px",
+                "border-radius": "50%",
+            });
+
+            return point;
+        }
+
+        var outFrag = document.createDocumentFragment();
+        var drawAllPoints = function () {
+            $wrapper[0].innerHTML = '';
+            for (var i = -30; i <= 30; i++) {
+                if (i % 3 == 0) {
+                    var aDiv = $('<div></div>');
+                    var inFrag = document.createDocumentFragment();
+
+                    aDiv.css({
+                        "position": "absolute",
+                        "width": "100%",
+                        "height": "100%",
+                        "transform": "rotateY(" + i + "deg)",
+                    });
+
+                    for (var j = 0; j < 18; j++) {
+                        inFrag.appendChild(creatPoint(true)[0]);
+                        if (j % 6 == 0) {
+                            inFrag.appendChild(creatPoint(false)[0]);
+                        }
+                    }
+                    aDiv[0].appendChild(inFrag);
+                    outFrag.appendChild(aDiv[0]);
+                }
+            }
+            $wrapper[0].appendChild(outFrag);
+        }
+    </script>
+</body>
+</html>
+
