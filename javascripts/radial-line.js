@@ -80,7 +80,7 @@
     }
 
     // cross-browser requestAnimFrame
-    window.requestAnimFrame = (function () {
+    window.requestAnimationFrame = (function () {
         return window.requestAnimationFrame ||
                 window.webkitRequestAnimationFrame ||
                 window.mozRequestAnimationFrame ||
