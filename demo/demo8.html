@@ -549,10 +549,10 @@
                     </div>
                 </div>
                 <div>
-                    <img class="circle c1" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/37804291-file_1481620242435_232c.png" />
-                    <img class="circle c2" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/37804291-file_1481620242435_232c.png" />
-                    <img class="circle c3" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/92185989-file_1481620258623_98d0.png" />
-                    <img class="circle bigTitle" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/97835038-file_1481620272407_3b78.png" />
+                    <img class="circle c1" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/37804291-file_1481620242435_232c.png" style="opacity:0"/>
+                    <img class="circle c2" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/37804291-file_1481620242435_232c.png" style="opacity:0"/>
+                    <img class="circle c3" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/92185989-file_1481620258623_98d0.png" style="opacity:0"/>
+                    <img class="circle bigTitle" src="http://oi2eedr7y.bkt.clouddn.com/16-12-13/97835038-file_1481620272407_3b78.png" style="opacity:0"/>
                 </div>
                 <svg id="svgByYozo" xmlns="http://www.w3.org/2000/svg" version="1.1"></svg>
                 <div class="search-box-container">
@@ -721,10 +721,12 @@
                     case 3:
                         {
                             circles[i].style.height = HEIGHT * 0.42 + 'px';
+                            circles[i].style.width = 'auto';
                             circles[i].style.marginLeft = "-" + circles[i].clientWidth / 2 + 'px';
                             circles[i].style.marginTop = "-" + (HEIGHT * 0.42 / 2 + HEIGHT * 0.155) + 'px';
                         }
                         break;
+                        circles[i].style.opacity = 1;
                 }
             }
 
